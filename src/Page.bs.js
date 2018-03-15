@@ -16,6 +16,10 @@ function make(message, _) {
   var newrecord = component.slice();
   newrecord[/* render */9] = (function (self) {
       return React.createElement("div", {
+                  style: {
+                    color: "#123456",
+                    fontSize: "68px"
+                  },
                   onClick: Curry._1(self[/* handle */0], handleClick)
                 }, message);
     });

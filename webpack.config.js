@@ -8,4 +8,8 @@ module.exports = {
     publicPath: outputDir,
     filename: 'Index.js',
   },
+  // loader: {
+  //   test: /\.md$/,
+  //   loader: 'babel!react-markdown'
+  // }
 };
