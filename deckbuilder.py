@@ -12,7 +12,7 @@ slides_dir = os.path.join(
 )
 reasonReactJsx = []
 for root, dirs, files in os.walk(slides_dir):
-    for file_name in files:
+    for file_name in sorted(files):
         file_path = os.path.join(slides_dir, file_name)
         input_file = codecs.open(file_path, mode="r", encoding="utf-8")
         text = input_file.read()
@@ -37,4 +37,12 @@ let mySlideDeck = [|
 """)
 
 output = s.substitute(slides=',\n'.join(reasonReactJsx))
-print(output)
+
+slides_path = os.path.join(
+    os.path.dirname(os.path.realpath(__file__)),
+    'src',
+    'Slides.re'
+)
+
+with open(slides_path, 'w') as the_file:
+    the_file.write(output)

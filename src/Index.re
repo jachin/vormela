@@ -1,3 +1,3 @@
-ReactDOMRe.renderToElementWithId(<Page />, "index");
+ReactDOMRe.renderToElementWithId(<Presentation />, "index");
 
 ReasonReact.Router.push("");

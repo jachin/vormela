@@ -25,7 +25,7 @@ let mapUrlToRoute = (url: ReasonReact.Router.url) =>
 let currentSlide = (slideIndex) =>
     Slides.mySlideDeck[slideIndex];
 
-let component = ReasonReact.reducerComponent("Page");
+let component = ReasonReact.reducerComponent("Presentation");
 
 let make = (_children) => {
   ...component,
