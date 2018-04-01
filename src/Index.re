@@ -1,1 +1,3 @@
-ReactDOMRe.renderToElementWithId(<Page message="Hello!" />, "index");
+ReactDOMRe.renderToElementWithId(<Page />, "index");
+
+ReasonReact.Router.push("");

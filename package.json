@@ -6,7 +6,7 @@
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack -w"
+    "webpack": "webpack-dev-server --mode development --content-base build/"
   },
   "keywords": [
     "BuckleScript"
@@ -19,6 +19,7 @@
     "reason-react": ">=0.3.0"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.6.1",
     "bs-platform": "^2.2.2",
     "eslint": "^4.18.2",
     "eslint-config-standard": "^11.0.0",
@@ -26,7 +27,10 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
+    "html-webpack-plugin": "^3.1.0",
     "react-markdown-loader": "^1.1.14",
-    "webpack": "^3.8.1"
+    "webpack": "^4",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3"
   }
 }
