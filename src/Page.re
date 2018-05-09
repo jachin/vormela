@@ -21,6 +21,6 @@ let make = (~message, _children) => {
       onClick=(self.handle(handleClick))
       style=(ReactDOMRe.Style.make(~color="#123456", ~fontSize="68px", ()))
     >
-      (ReasonReact.stringToElement(message))
+      (ReasonReact.string(message))
     </div>
 };

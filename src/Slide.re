@@ -8,8 +8,8 @@ let make = (~router, _children) => {
       DirectorRe.setRoute(router, "/")
     };
     <div>
-      <h1>{ReasonReact.stringToElement("Slide")}</h1>
-      <a href="#" onClick=gotoHome>{ReasonReact.stringToElement("Home")}</a>
+      <h1>{ReasonReact.string("Slide")}</h1>
+      <a href="#" onClick=gotoHome>{ReasonReact.string("Home")}</a>
     </div>
   }
 };
