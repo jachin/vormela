@@ -5,7 +5,7 @@ let component = ReasonReact.statelessComponent("Previous");
 let handleClick = (nextSlide, event) =>
   if (! ReactEventRe.Mouse.defaultPrevented(event)) {
     ReactEventRe.Mouse.preventDefault(event);
-    ReasonReact.Router.push("/slide/" ++ string_of_int(nextSlide))
+    ReasonReact.Router.push("#" ++ string_of_int(nextSlide))
   };
 
 let handleKeyUp = (nextSlide, event) => {
@@ -20,9 +20,9 @@ let make = (~slide, _children) => {
   render: (_self) => ReasonReact.createDomElement(
     "a",
     ~props={
-      "href": "/slide/" ++ string_of_int(slide - 1),
-      "onClick": handleClick(slide - 1),
-      "onKeyUp": handleKeyUp(slide - 1)
+      "href": "#" ++ string_of_int(slide),
+      "onClick": handleClick(slide),
+      "onKeyUp": handleKeyUp(slide)
     },
     [| (str("Previous")) |]
   )
