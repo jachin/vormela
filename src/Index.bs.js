@@ -3,8 +3,38 @@
 
 var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
-var Page$ReactTemplate = require("./Page.bs.js");
+var Home$ReactTemplate = require("./Home.bs.js");
+var Slide$ReactTemplate = require("./Slide.bs.js");
+var Director = require("director/build/director");
 
-ReactDOMRe.renderToElementWithId(ReasonReact.element(/* None */0, /* None */0, Page$ReactTemplate.make("Hello!", /* array */[])), "index");
+var router = new Director.Router({
+      "/": "home",
+      "/slide": "slide"
+    });
 
-/*  Not a pure module */
+var handlers = {
+  home: (function () {
+      var element = ReasonReact.element(/* None */0, /* None */0, Home$ReactTemplate.make(router, /* array */[]));
+      return ReactDOMRe.renderToElementWithId(element, "root");
+    }),
+  user: (function () {
+      var element = ReasonReact.element(/* None */0, /* None */0, Slide$ReactTemplate.make(router, /* array */[]));
+      return ReactDOMRe.renderToElementWithId(element, "root");
+    })
+};
+
+router.configure({
+      html5history: /* true */1,
+      resources: handlers
+    });
+
+function renderForRoute(element) {
+  return ReactDOMRe.renderToElementWithId(element, "root");
+}
+
+router.init("/");
+
+exports.router = router;
+exports.handlers = handlers;
+exports.renderForRoute = renderForRoute;
+/* router Not a pure module */
