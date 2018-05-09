@@ -1,91 +1,36 @@
-let str = ReasonReact.stringToElement;
-
-type route =
-  | Slide(option(int));
+let str = ReasonReact.string;
+let mySlideDeck = Slides.mySlideDeck;
 
 type state = {
-  route,
-  previousSlideIndex: int,
-  slideIndex: int,
-  nextSlideIndex: int
+  currentSlideIndex: int,
+  slides: list(ReasonReact.reactElement),
 };
 
 type action =
-  | ChangeRoute(route);
+  | NextSlide
+  | PreviousSlide;
 
-let calcNextSlide = (i:int) => {
-  Js.log(string_of_int(Array.length(Slides.mySlideDeck)));
-  if (i >= Array.length(Slides.mySlideDeck)) {
-    i;
-  }
-  else {
-    i + 1;
-  }
-};
-
-let calcPreviouslide = (i:int) => {
-  if (i <= 0) {
-    i;
-  }
-  else {
-    i - 1;
-  }
-};
+let rec getCurrentSlide = (~index: int, slides: list(ReasonReact.reactElement)) =>
+  switch slides {
+    | [] => ReasonReact.string("No slides? That's weird")
+    | [head , ..._] when index <= 0 => head
+    | [_, ...tail] => getCurrentSlide(~index=index-1, tail)
+  };
 
 let reducer = (action, state) =>
   switch action {
-  | Slide(s) => ReasonReact.Update({
-      ...state,
-      slideIndex: switch (s) {
-      | None => 0
-      | Some(s) => s
-      }
-    })
+  | NextSlide => ReasonReact.Update({...state, currentSlideIndex: state.currentSlideIndex + 1})
+  | PreviousSlide => ReasonReact.Update({...state, currentSlideIndex: state.currentSlideIndex - 1})
   };
-
-let mapUrlToRoute = (url: ReasonReact.Router.url) => {
-  Js.log("mapUrlToRoute");
-  switch url.hash {
-  | "" => Slide(Some(0))
-  | id => Slide(Some(int_of_string(id)))
-  };
-};
-
-let currentSlide = (slideIndex) =>
-    Slides.mySlideDeck[slideIndex];
 
 let component = ReasonReact.reducerComponent("Presentation");
-
-let getInitialRoute = () => {
-  switch (ReasonReact.Router.dangerouslyGetInitialUrl().hash) {
-  | "" => 0
-  | _ => int_of_string(ReasonReact.Router.dangerouslyGetInitialUrl().hash);
-  }
-};
 
 let make = (_children) => {
   ...component,
   reducer,
-  initialState: () => {route: Slide(Some(getInitialRoute())), slideIndex: 0, previousSlideIndex: 0, nextSlideIndex: 1},
-  subscriptions: (self) => [
-    Sub(
-      () => ReasonReact.Router.watchUrl((url) =>
-        self.send(Slide(Some(int_of_string(url.hash))))
-      ),
-      ReasonReact.Router.unwatchUrl
-    )
-  ],
+  initialState: () => {currentSlideIndex: 0, slides: Slides.mySlideDeck},
   render: (self) =>
     <div>
-      (
-        switch (self.state.slideIndex) {
-        | slideIndex =>
-          <div>
-            (currentSlide(slideIndex))
-            <Previous slide=(self.state.previousSlideIndex) />
-            <Next slide=(self.state.nextSlideIndex) />
-          </div>
-        }
-      )
+      (getCurrentSlide(~index=self.state.currentSlideIndex, self.state.slides))
     </div>
 };
