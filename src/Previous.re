@@ -22,7 +22,8 @@ let make = (~slide, _children) => {
     ~props={
       "href": "#" ++ string_of_int(slide),
       "onClick": handleClick(slide),
-      "onKeyUp": handleKeyUp(slide)
+      "onKeyUp": handleKeyUp(slide),
+      "className": "previousButton"
     },
     [| (str("Previous")) |]
   )

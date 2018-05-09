@@ -44,15 +44,16 @@ let make = (_children) => {
       () =>
         ReasonReact.Router.watchUrl(url => {
           let newIndex = parseUrlHashForSlideIndex(url.hash);
+          Js.log(newIndex);
           self.send(JumpToSlide(newIndex));
         }),
         ReasonReact.Router.unwatchUrl
       )
     ],
   render: (self) =>
-    <div>
+    <div className="slides">
       (getCurrentSlide(~index=self.state.currentSlideIndex, self.state.slides))
-      <div>
+      <div className="navigation">
         <Previous slide=(self.state.currentSlideIndex - 1) />
         <Next slide=(self.state.currentSlideIndex + 1) />
       </div>

@@ -31,9 +31,9 @@ for root, dirs, files in os.walk(slides_dir):
 
 s = Template("""let str = ReasonReact.stringToElement;
 
-let mySlideDeck = [|
+let mySlideDeck = [
   $slides
-|];
+];
 """)
 
 output = s.substitute(slides=',\n'.join(reasonReactJsx))

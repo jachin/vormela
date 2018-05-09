@@ -1,3 +1,62 @@
+#index {
+  width: 100%;
+}
+
 body {
+  font-family: "Futura";
   background-color: aliceblue;
+  width: 100%;
+}
+
+.slides {
+  width: 90vw;
+  font-size: 5vh;
+  margin: auto;
+}
+
+.slides h1 {
+  text-align: center;
+}
+
+.slides h2 {
+  text-align: center;
+}
+
+a.previousButton {
+  float: left;
+  color: black;
+  font-size: 50%;
+}
+
+a.previousButton:link {
+  text-decoration: none;
+}
+
+a.nextButton {
+  float: right;
+  color: black;
+  font-size: 50%;
+}
+
+a.nextButton:link {
+  text-decoration: none;
+}
+
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 1vw solid #ccc;
+  margin: 1vw;
+  padding: 1vw;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: 0em;
+}
+blockquote p {
+  display: inline;
 }

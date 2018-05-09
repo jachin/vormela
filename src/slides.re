@@ -3,7 +3,9 @@ let str = ReasonReact.stringToElement;
 let mySlideDeck = [
   <div className="slide"><h1>(str("Reason"))</h1>
 <h2>(str("A Slide Deck"))</h2>
-<p>(str("So much more work that I thought it would be."))</p></div>,
+<blockquote>
+<p>(str("So much more work that I thought it would be. ----Jachin Rupe circa May 2018"))</p>
+</blockquote></div>,
 <div className="slide"><h1>(str("Ocaml"))</h1>
 <h3>(str("Turns Out..."))</h3>
 <h2>(str("The 'ml' is NOT for \"Mark Down\""))</h2></div>,
