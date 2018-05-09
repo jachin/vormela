@@ -1,3 +1,5 @@
+[%%bs.raw {| require('./Presentation.css') |}];
+
 let str = ReasonReact.string;
 let mySlideDeck = Slides.mySlideDeck;
 
@@ -42,7 +44,6 @@ let make = (_children) => {
       () =>
         ReasonReact.Router.watchUrl(url => {
           let newIndex = parseUrlHashForSlideIndex(url.hash);
-          Js.log("newIndex " ++ string_of_int(newIndex));
           self.send(JumpToSlide(newIndex));
         }),
         ReasonReact.Router.unwatchUrl
@@ -52,12 +53,8 @@ let make = (_children) => {
     <div>
       (getCurrentSlide(~index=self.state.currentSlideIndex, self.state.slides))
       <div>
-        <button onClick=(_event => self.send(NextSlide))>
-          (ReasonReact.string("Next"))
-        </button>
-        <button onClick=(_event => self.send(PreviousSlide))>
-          (ReasonReact.string("Previous"))
-        </button>
+        <Previous slide=(self.state.currentSlideIndex - 1) />
+        <Next slide=(self.state.currentSlideIndex + 1) />
       </div>
     </div>
 };

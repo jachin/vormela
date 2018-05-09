@@ -20,7 +20,7 @@ let make = (~slide, _children) => {
   render: (_self) => ReasonReact.createDomElement(
     "a",
     ~props={
-      "href": "#" ++ string_of_int(slide),
+      "href": "/#" ++ string_of_int(slide),
       "onClick": handleClick(slide),
       "onKeyUp": handleKeyUp(slide)
     },

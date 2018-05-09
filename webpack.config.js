@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const { resolve, join } = require('path')
 const outputDir = join(__dirname, 'build/')
@@ -20,6 +21,19 @@ module.exports = {
       template: resolve('src', 'index.ejs'),
       alwaysWriteToDisk: true
     }),
-    new HtmlWebpackHarddiskPlugin()
-  ]
+    new HtmlWebpackHarddiskPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    })
+  ],
+  module: {
+    rules: [{
+      test: /\.css$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader'
+      ]
+    }]
+  }
 }
