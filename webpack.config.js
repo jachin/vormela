@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 
 const { resolve, join } = require('path')
 const outputDir = join(__dirname, 'build/')
@@ -16,7 +17,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Vormela',
-      template: resolve('src', 'index.ejs')
-    })
+      template: resolve('src', 'index.ejs'),
+      alwaysWriteToDisk: true
+    }),
+    new HtmlWebpackHarddiskPlugin()
   ]
 }
