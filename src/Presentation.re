@@ -44,7 +44,6 @@ let make = (_children) => {
       () =>
         ReasonReact.Router.watchUrl(url => {
           let newIndex = parseUrlHashForSlideIndex(url.hash);
-          Js.log(newIndex);
           self.send(JumpToSlide(newIndex));
         }),
         ReasonReact.Router.unwatchUrl
