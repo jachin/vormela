@@ -6,7 +6,7 @@ import markdown
 from bs4 import BeautifulSoup
 from string import Template
 
-md_extensions = ['markdown.extensions.fenced_code', 'markdown.extensions.codehilite']
+md_extensions = ['markdown.extensions.fenced_code']
 
 slides_dir = os.path.join(
     os.path.dirname(os.path.realpath(__file__)),
@@ -30,6 +30,8 @@ for root, dirs, files in os.walk(slides_dir):
         reasonHtml = str(soup)
         reasonHtml = reasonHtml.replace('classname', 'className')
         reasonHtml = reasonHtml.replace('class=', 'className=')
+        reasonHtml = reasonHtml.replace('&lt;', '<')
+        reasonHtml = reasonHtml.replace('&gt;', '>')
         reasonReactJsx.append(reasonHtml)
 
 s = Template("""let str = ReasonReact.string;

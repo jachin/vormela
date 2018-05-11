@@ -3,7 +3,9 @@
 Reason with React
 
 ```ocaml
-let component = ReasonReact.statelessComponent("Greeting");
+let component = ReasonReact.statelessComponent(
+  "Greeting"
+);
 
 let make = (~name, _children) => {
   ...component,
